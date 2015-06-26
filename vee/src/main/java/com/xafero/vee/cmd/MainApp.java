@@ -22,6 +22,7 @@ import org.apache.commons.cli.Options;
 
 import com.google.common.base.MoreObjects;
 import com.xafero.vee.env.Console;
+import com.xafero.vee.env.FileSystem;
 import com.xafero.vee.env.Window;
 import com.xafero.vee.util.Files;
 import com.xafero.vee.util.Strings;
@@ -143,5 +144,6 @@ public class MainApp {
 	private static void inject(Bindings env, File file) {
 		env.put("window", new Window());
 		env.put("console", new Console(file.getName()));
+		env.put("fs", new FileSystem());
 	}
 }
