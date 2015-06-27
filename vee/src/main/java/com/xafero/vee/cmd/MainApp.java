@@ -24,6 +24,7 @@ import com.google.common.base.MoreObjects;
 import com.xafero.vee.env.Console;
 import com.xafero.vee.env.FileSystem;
 import com.xafero.vee.env.Media;
+import com.xafero.vee.env.Time;
 import com.xafero.vee.env.Window;
 import com.xafero.vee.util.Files;
 import com.xafero.vee.util.Strings;
@@ -147,5 +148,6 @@ public class MainApp {
 		env.put("console", new Console(file.getName()));
 		env.put("fs", new FileSystem());
 		env.put("media", new Media());
+		env.put("time", new Time());
 	}
 }
