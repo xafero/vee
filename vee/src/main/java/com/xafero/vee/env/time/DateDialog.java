@@ -1,4 +1,4 @@
-package com.xafero.vee.env;
+package com.xafero.vee.env.time;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import org.jdatepicker.JDatePanel;
 
 @SuppressWarnings("serial")
-class DateDialog<T> extends JDialog implements ActionListener {
+public class DateDialog<T> extends JDialog implements ActionListener {
 
 	private final JDatePanel chooser;
 
