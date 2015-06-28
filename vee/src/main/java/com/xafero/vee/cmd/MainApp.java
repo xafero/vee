@@ -26,6 +26,8 @@ import com.xafero.vee.env.FileSystem;
 import com.xafero.vee.env.Media;
 import com.xafero.vee.env.Time;
 import com.xafero.vee.env.Window;
+import com.xafero.vee.env.storage.LocalStorage;
+import com.xafero.vee.env.storage.SessionStorage;
 import com.xafero.vee.util.Files;
 import com.xafero.vee.util.Strings;
 
@@ -149,5 +151,7 @@ public class MainApp {
 		env.put("fs", new FileSystem());
 		env.put("media", new Media());
 		env.put("time", new Time());
+		env.put("localStorage", new LocalStorage());
+		env.put("sessionStorage", new SessionStorage());
 	}
 }
