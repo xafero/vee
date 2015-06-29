@@ -2,6 +2,7 @@ package com.xafero.vee.env;
 
 import java.awt.Component;
 import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -29,6 +30,10 @@ public class Window {
 
 	public void open(Object obj) throws IOException, URISyntaxException {
 		Desktop.getDesktop().browse(new URI(obj.toString()));
+	}
+
+	public void open(File file) throws IOException {
+		Desktop.getDesktop().open(file);
 	}
 
 	public String prompt(Object obj) {

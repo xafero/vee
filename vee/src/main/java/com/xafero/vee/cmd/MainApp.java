@@ -21,7 +21,13 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
 import com.google.common.base.MoreObjects;
+import com.xafero.vee.env.Console;
+import com.xafero.vee.env.FileSystem;
+import com.xafero.vee.env.Media;
+import com.xafero.vee.env.Time;
 import com.xafero.vee.env.Window;
+import com.xafero.vee.env.storage.LocalStorage;
+import com.xafero.vee.env.storage.SessionStorage;
 import com.xafero.vee.util.Files;
 import com.xafero.vee.util.Strings;
 
@@ -129,7 +135,7 @@ public class MainApp {
 		ScriptEngineManager mgr = new ScriptEngineManager();
 		ScriptEngine engine = mgr.getEngineByExtension(extension);
 		Bindings env = engine.createBindings();
-		inject(env);
+		inject(env, file);
 		try {
 			Object result = engine.eval(new FileReader(file), env);
 			if (result != null)
@@ -139,7 +145,13 @@ public class MainApp {
 		}
 	}
 
-	private static void inject(Bindings env) {
+	private static void inject(Bindings env, File file) {
 		env.put("window", new Window());
+		env.put("console", new Console(file.getName()));
+		env.put("fs", new FileSystem());
+		env.put("media", new Media());
+		env.put("time", new Time());
+		env.put("localStorage", new LocalStorage());
+		env.put("sessionStorage", new SessionStorage());
 	}
 }
