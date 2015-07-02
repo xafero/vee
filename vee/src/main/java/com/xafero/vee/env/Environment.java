@@ -30,6 +30,19 @@ public class Environment {
 		depsFld.mkdirs();
 	}
 
+	public Object createObject(Object obj) {
+		return createObject(obj + "");
+	}
+
+	private Object createObject(String className) {
+		try {
+			Class<?> clazz = Class.forName(className);
+			return clazz.newInstance();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	public Object require(Object obj) throws IOException {
 		return require(obj + "");
 	}

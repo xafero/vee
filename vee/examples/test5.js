@@ -6,4 +6,8 @@ env.require("http://search.maven.org/remotecontent?filepath="
 env.require("file://deps/ojdbc6-11g_R2.jar");
 
 // Log it!
-print('Loaded!');
+var pyv = env.createObject('org.python.Version');
+console.log(pyv);
+
+var odrv = env.createObject('oracle.jdbc.OracleDriver');
+console.log(odrv);
