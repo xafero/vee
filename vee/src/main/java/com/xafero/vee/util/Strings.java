@@ -1,5 +1,8 @@
 package com.xafero.vee.util;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 public final class Strings {
 
 	private Strings() {
@@ -13,5 +16,13 @@ public final class Strings {
 			bld.append(item);
 		}
 		return bld.toString();
+	}
+
+	public static URI toURI(String args) {
+		try {
+			return new URI(args);
+		} catch (URISyntaxException e) {
+			return null;
+		}
 	}
 }

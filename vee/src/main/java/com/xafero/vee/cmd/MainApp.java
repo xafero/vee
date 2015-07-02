@@ -22,6 +22,7 @@ import org.apache.commons.cli.Options;
 
 import com.google.common.base.MoreObjects;
 import com.xafero.vee.env.Console;
+import com.xafero.vee.env.Environment;
 import com.xafero.vee.env.FileSystem;
 import com.xafero.vee.env.Media;
 import com.xafero.vee.env.Time;
@@ -153,5 +154,6 @@ public class MainApp {
 		env.put("time", new Time());
 		env.put("localStorage", new LocalStorage());
 		env.put("sessionStorage", new SessionStorage());
+		env.put("env", new Environment());
 	}
 }
