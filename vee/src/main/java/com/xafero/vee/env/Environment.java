@@ -3,8 +3,10 @@ package com.xafero.vee.env;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -17,6 +19,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.codehaus.plexus.util.IOUtil;
 import org.eclipse.aether.resolution.DependencyResolutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,6 +67,8 @@ public class Environment {
 	private Object require(URI uri) throws IOException, DependencyResolutionException {
 		if (uri.getScheme().equalsIgnoreCase("http") || uri.getScheme().equalsIgnoreCase("https"))
 			return requireHttp(uri);
+		if (uri.getScheme().equalsIgnoreCase("ftp") || uri.getScheme().equalsIgnoreCase("ftps"))
+			return requireFtp(uri);
 		if (uri.getScheme().equalsIgnoreCase("file"))
 			return requireFile(uri);
 		if (uri.getScheme().equalsIgnoreCase("mvn"))
@@ -92,6 +97,24 @@ public class Environment {
 	private Object requireFile(URI uri) {
 		String path = (uri + "").replace("file://", "");
 		File file = new File(path);
+		return addJarToClassPath(file) ? file.getName() : null;
+	}
+
+	private Object requireFtp(URI uri) throws MalformedURLException, IOException {
+		// Extract file name
+		String path = uri + "";
+		int lastSlash = path.lastIndexOf('/');
+		String fileName = path.substring(lastSlash + 1);
+		// Download file
+		File file = new File(depsFld, fileName);
+		if (!file.exists()) {
+			log.info("Requesting '{}'...", uri);
+			InputStream in = uri.toURL().openStream();
+			IOUtil.copy(in, new FileOutputStream(file));
+			long size = file.length();
+			log.info("Downloaded {} bytes.", size);
+		}
+		// Use file
 		return addJarToClassPath(file) ? file.getName() : null;
 	}
 
