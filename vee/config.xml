@@ -28,11 +28,16 @@
 		<extension>jexl</extension>
 		<extension>jexl2</extension>
 		<require>mvn://org.apache.commons:commons-jexl:2.1.1</require>
-		<license name="ASL 2.0" url="http://www.apache.org/licenses/LICENSE-2.0" />
+		<license name="ASL 2.0" url="http://www.apache.org/licenses/LICENSE-2.0" />	
 	</Language>
-	<Language name="Caucho Quercus (PHP 5)">
+	<Language name="Caucho Quercus (PHP 5)" >
 		<extension>php</extension>
 		<require>mvn://com.caucho:quercus:4.0.44_@_caucho=http://caucho.com/m2</require>
 		<license name="GPL 2+" url="http://www.gnu.org/licenses/old-licenses/lgpl-2.0.html" />
-	</Language>
+	</Language>	
+	<Language name="Kawa">
+		<extension>scm</extension>
+		<require>ftp://ftp.gnu.org/pub/gnu/kawa/kawa-2.0.jar</require>
+		<license name="MIT License" url="http://opensource.org/licenses/mit-license.php" />
+	</Language>	
 </Settings>
