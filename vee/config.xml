@@ -1,0 +1,27 @@
+<Settings>
+	<Language name="Jython">
+		<extension>py</extension>
+		<require>mvn://org.python:jython-standalone:2.7.0</require>
+		<license name="Jython Software License" url="http://www.jython.org/Project/license.html" />
+	</Language>
+	<Language name="JRuby">
+		<extension>rb</extension>
+		<require>mvn://org.jruby:jruby-complete:9.0.0.0.rc1</require>
+		<license name="EPL 1.0" url="https://github.com/jruby/jruby/blob/master/COPYING" />
+	</Language>
+	<Language name="Groovy">
+		<extension>groovy</extension>
+		<require>mvn://org.codehaus.groovy:groovy-jsr223:2.4.3</require>
+		<license name="ASL 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt" />
+	</Language>
+	<Language name="Scala">
+		<extension>scala</extension>
+		<require>mvn://org.scala-lang:scala-compiler:2.12.0-M1</require>
+		<license name="BSD 3-Clause" url="http://www.scala-lang.org/license.html" />
+	</Language>
+	<Language name="Clojure">
+		<extension>clj</extension>
+		<require>mvn://org.clojars.xafero:clojure-jsr223:1.7.0.2_@_clojars.org=http://clojars.org/repo</require>
+		<license name="EPL 1.0" url="http://opensource.org/licenses/eclipse-1.0.php" />
+	</Language>
+</Settings>
