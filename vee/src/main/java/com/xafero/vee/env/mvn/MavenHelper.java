@@ -90,4 +90,12 @@ public class MavenHelper {
 	public File getBaseDir() {
 		return localRepo.getBasedir();
 	}
+
+	public void addRemoteRepository(String id, String url) {
+		addRemoteRepository(id, "default", url);
+	}
+
+	public void addRemoteRepository(String id, String type, String url) {
+		remotes.add(new RemoteRepository.Builder(id, type, url).build());
+	}
 }

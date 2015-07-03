@@ -72,7 +72,16 @@ public class Environment {
 	}
 
 	private Object requireMaven(URI uri) throws DependencyResolutionException {
-		String artifact = (uri + "").replace("mvn://", "");
+		String path = (uri + "").replace("mvn://", "");
+		String[] parts = path.split("_@_");
+		String artifact = parts[0];
+		String src = parts.length > 1 ? parts[1] : null;
+		if (src != null) {
+			parts = src.split("=", 2);
+			String repoId = parts[0];
+			String repoUrl = parts[1];
+			mvn.addRemoteRepository(repoId, repoUrl);
+		}
 		Map<String, File> results = mvn.resolveToFiles(artifact);
 		Set<File> uniques = new LinkedHashSet<File>(results.values());
 		for (File file : uniques)
