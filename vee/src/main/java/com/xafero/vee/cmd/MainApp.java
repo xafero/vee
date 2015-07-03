@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.net.URI;
 
 import javax.script.Bindings;
 import javax.script.ScriptEngine;
@@ -21,6 +22,8 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
 import com.google.common.base.MoreObjects;
+import com.xafero.vee.cfg.Configuration;
+import com.xafero.vee.cfg.Language;
 import com.xafero.vee.env.Console;
 import com.xafero.vee.env.Environment;
 import com.xafero.vee.env.FileSystem;
@@ -76,14 +79,29 @@ public class MainApp {
 			return;
 		}
 		if (line.hasOption('l')) {
+			processConfig();
 			printLanguages();
 			return;
 		}
 		if (line.hasOption('e')) {
+			processConfig();
 			execute(line.getOptionValue('e'));
 			return;
 		}
 		throw new UnsupportedOperationException("Unrecognized option: " + line.getArgList());
+	}
+
+	private static void processConfig() {
+		Configuration cfg = Configuration.from(null);
+		for (Language lang : cfg.getLanguages()) {
+			URI uri = lang.getRequire();
+			Environment env = new Environment();
+			try {
+				env.require(uri);
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+		}
 	}
 
 	private static void printHelp(Options options) {
