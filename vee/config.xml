@@ -24,4 +24,15 @@
 		<require>mvn://org.clojars.xafero:clojure-jsr223:1.7.0.2_@_clojars.org=http://clojars.org/repo</require>
 		<license name="EPL 1.0" url="http://opensource.org/licenses/eclipse-1.0.php" />
 	</Language>
+	<Language name="Java Expression Language (JEXL)">
+		<extension>jexl</extension>
+		<extension>jexl2</extension>
+		<require>mvn://org.apache.commons:commons-jexl:2.1.1</require>
+		<license name="ASL 2.0" url="http://www.apache.org/licenses/LICENSE-2.0" />
+	</Language>
+	<Language name="Caucho Quercus (PHP 5)">
+		<extension>php</extension>
+		<require>mvn://com.caucho:quercus:4.0.44_@_caucho=http://caucho.com/m2</require>
+		<license name="GPL 2+" url="http://www.gnu.org/licenses/old-licenses/lgpl-2.0.html" />
+	</Language>
 </Settings>
