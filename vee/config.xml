@@ -42,7 +42,7 @@
 	</Language>
 	<Language name="Java">
 		<extension>java</extension>
-		<require>mvn://com.github.xafero:dynjc:7c01afc2f5_@_jitpack.io=https://jitpack.io</require>
+		<require>mvn://com.github.xafero:dynjc:043cfc5811_@_jitpack.io=https://jitpack.io</require>
 		<license name="AGPL 3.0" url="http://www.gnu.org/licenses/agpl-3.0.en.html" />
-	</Language>	
+	</Language>
 </Settings>
