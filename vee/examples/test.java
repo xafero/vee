@@ -1,3 +1,9 @@
+import com.xafero.vee.env.annots.Require;
+import org.joda.time.*;
+import java.awt.image.*;
+import org.python.*;
+import com.thoughtworks.xstream.*;
+import oracle.jdbc.*;
 
 // Prompt and alert example
 String text;
@@ -43,7 +49,7 @@ Object color = media.chooseColor();
 console.log(color);
 
 // Capture and open screenshot
-java.awt.image.RenderedImage image = media.captureScreen(1);
+RenderedImage image = media.captureScreen(1);
 File imgFile = media.write(image, "test.png");
 window.open(imgFile);
 
@@ -51,14 +57,14 @@ window.open(imgFile);
 Object locale = time.currentLocale();
 console.log("User's locale --> " + locale);
 
-org.joda.time.LocalDate date = time.chooseDate();
+LocalDate date = time.chooseDate();
 console.log("He or she chooses --> " + date);
 console.log("In islamic calendar --> " + time.convertInto(date, "Islamic"));
 
-org.joda.time.LocalDate today = time.today();
+LocalDate today = time.today();
 console.log("Today is --> " + today);
 
-org.joda.time.Days days = time.days(today, date);
+Days days = time.days(today, date);
 console.log("Difference in days --> " + days);
 console.log("           in hours --> " + days.toStandardHours());
 
@@ -74,24 +80,25 @@ console.log("Step #" + sessionStorage.getItem("clickCount"));
 sessionStorage.setItem("clickCount", Integer.parseInt(sessionStorage.getItem("clickCount").toString()) + 1);
 console.log("Step #" + sessionStorage.getItem("clickCount"));
 
-// Download it dynamically
-env.require("http://search.maven.org/remotecontent?filepath="
-		+ "org/python/jython-standalone/2.7.0/jython-standalone-2.7.0.jar");
-
-// This one can't be loaded except with a browser
-env.require("file://deps/ojdbc6-11g_R2.jar");
-
-// A Maven-driven example
-env.require("mvn://com.thoughtworks.xstream:xstream:1.4.8");
+@Require({ /* Download it dynamically */ 
+		"http://search.maven.org/remotecontent?filepath="
+		+ "org/python/jython-standalone/2.7.0/jython-standalone-2.7.0.jar", 
+		
+		  /* This one can't be loaded except with a browser */ 
+		"file://deps/ojdbc6-11g_R2.jar", 
+		
+		/* A Maven-driven example */ 
+		"mvn://com.thoughtworks.xstream:xstream:1.4.8"})
 
 // Log it!
-Object pyv = env.createObject("org.python.Version");
-console.log(pyv);
+Version pyv = new Version();
+console.log(pyv.getClass());
 
-Object odrv = env.createObject("oracle.jdbc.OracleDriver");
-console.log(odrv);
+OracleDriver odrv = new OracleDriver();
+int major = odrv.getMajorVersion();
+console.log(odrv+", ver="+major);
 
-Object xml = env.createObject("com.thoughtworks.xstream.XStream");
+XStream xml = new XStream();
 console.log(xml);
 
 // Just return nothing
