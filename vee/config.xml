@@ -51,4 +51,10 @@
 		<require>mvn://com.github.xafero:dynkt:81469ba243_@_jitpack.io=https://jitpack.io</require>
 		<license name="ASL 2.0" url="https://www.apache.org/licenses/LICENSE-2.0" />
 	</Language>
+	<Language name="ScriptBasic">
+		<extension>bas</extension>
+		<extension>sb</extension>
+		<require>mvn://com.scriptbasic:jscriptbasic:1.0.4</require>
+		<license name="GPL 3.0" url="http://opensource.org/licenses/gpl-3.0.html" />
+	</Language>
 </Settings>
